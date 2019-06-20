@@ -58,6 +58,7 @@ void FGLRenderer::PostProcessScene(int fixedcm, float flash, const std::function
 	int sceneHeight = mBuffers->GetSceneHeight();
 
 	GLPPRenderState renderstate(mBuffers);
+	hw_postprocess.pixelate.Render(&renderstate);
 
 	hw_postprocess.Pass1(&renderstate, fixedcm, sceneWidth, sceneHeight);
 	mBuffers->BindCurrentFB();

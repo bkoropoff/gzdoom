@@ -418,6 +418,25 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
+struct PixelateUniforms
+{
+	static std::vector<UniformFieldDesc> Desc()
+	{
+		return {};
+	}
+};
+
+class PPPixelate
+{
+public:
+	void Render(PPRenderState *renderstate);
+
+private:
+	PPShader Pixelate = { "shaders/glsl/pixelate.fp", "", PixelateUniforms::Desc() };
+};
+
+/////////////////////////////////////////////////////////////////////////////
+
 struct FXAAUniforms
 {
 	FVector2 ReciprocalResolution;
@@ -830,6 +849,7 @@ class Postprocess
 public:
 	PPBloom bloom;
 	PPLensDistort lens;
+	PPPixelate pixelate;
 	PPFXAA fxaa;
 	PPCameraExposure exposure;
 	PPColormap colormap;
